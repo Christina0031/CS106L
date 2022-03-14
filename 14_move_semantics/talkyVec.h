@@ -29,7 +29,7 @@ public:
     bool empty() const;
 
     ValueType& operator[](size_type indx);
-    const ValueType& operator[](size_type indx) const ;
+    const ValueType& operator[](size_type indx) const;
 
     ValueType& at(size_type indx);
     const ValueType& at(size_type indx) const;
@@ -84,7 +84,7 @@ template <class ValueType>
 TalkyVec<ValueType>& TalkyVec<ValueType>::operator=(const TalkyVec& rhs) {
     // Make sure we don't self assign
     std::cout << "COPY ASSIGNMENT" << std::endl;
-    if(this != &rhs) {
+    if (this != &rhs) {
         std::cout << MAGENTA << "Deallocating size" << allocatedSize << " array." << RESET << std::endl;
         delete[] elems;
         logicalSize = rhs.logicalSize;
@@ -137,15 +137,15 @@ bool TalkyVec<ValueType>::empty() const {
 
 template <class ValueType>
 ValueType& TalkyVec<ValueType>::at(size_type index) {
-    if(index >= size()) {
+    if (index >= size()) {
         throw std::out_of_range("Out of bounds access of vector");
     }
     return *(begin() + index);
 }
 
 template <class ValueType>
-const ValueType& TalkyVec<ValueType>::at(size_type index) const{
-    if(index >= size()) {
+const ValueType& TalkyVec<ValueType>::at(size_type index) const {
+    if (index >= size()) {
         throw std::out_of_range("Out of bounds access of vector");
     }
     return *(begin() + index);
@@ -165,21 +165,21 @@ const ValueType& TalkyVec<ValueType>::operator[](size_type index) const {
 template <class ValueType>
 void TalkyVec<ValueType>::grow() {
     std::cout << "GROW" << std::endl;
-    iterator new_elems = new ValueType[2*allocatedSize];
-    std::cout << "Allocating size " <<  2*allocatedSize << " vector." << std::endl;
+    iterator new_elems = new ValueType[2 * allocatedSize];
+    std::cout << "Allocating size " << 2 * allocatedSize << " vector." << std::endl;
     std::copy(begin(), end(), new_elems);
     std::cout << "Copying size " << allocatedSize << " vector." << std::endl;
     delete[] elems;
-    std::cout << "Deallocating size " <<  allocatedSize << " vector.\n" << std::endl;
+    std::cout << "Deallocating size " << allocatedSize << " vector.\n" << std::endl;
     allocatedSize *= 2;
     elems = new_elems;
 }
 
 template <class ValueType>
-typename TalkyVec<ValueType>::iterator TalkyVec<ValueType>::insert(iterator pos, const ValueType &elem) {
+typename TalkyVec<ValueType>::iterator TalkyVec<ValueType>::insert(iterator pos, const ValueType& elem) {
     size_type indx = pos - begin();
     std::cout << "INSERT" << std::endl;
-    if(size() == allocatedSize) {
+    if (size() == allocatedSize) {
         grow();
     }
     /*
@@ -195,9 +195,9 @@ typename TalkyVec<ValueType>::iterator TalkyVec<ValueType>::insert(iterator pos,
 }
 
 template <class ValueType>
-void TalkyVec<ValueType>::push_back(const ValueType &elem) {
+void TalkyVec<ValueType>::push_back(const ValueType& elem) {
     std::cout << "PUSH BACK" << std::endl;
-    if(logicalSize == allocatedSize){
+    if (logicalSize == allocatedSize) {
         grow();
     }
     elems[logicalSize++] = elem;

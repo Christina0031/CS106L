@@ -8,7 +8,7 @@ using std::cout;    using std::endl;
 using std::to_string;
 
 // constructor to initialize Fraction
-Fraction::Fraction (int num, int denom) {
+Fraction::Fraction(int num, int denom) {
     this->num = num;
     this->denom = denom;
     reduce();
@@ -22,7 +22,7 @@ void Fraction::reduce() {
 
 // return if fraction represented by this is less than rhs
 bool Fraction::operator < (const Fraction& rhs) const {
-    return rhs.denom * num < rhs.num * denom;
+    return rhs.denom * num < rhs.num* denom;
 }
 
 // return if fraction represented by this is greater than rhs
@@ -32,7 +32,7 @@ bool Fraction::operator > (const Fraction& rhs) const {
 
 // get difference of this and rhs fractions
 Fraction Fraction::operator - (const Fraction& rhs) const {
-    int newNum = num * rhs.denom - denom * rhs.num;    
+    int newNum = num * rhs.denom - denom * rhs.num;
     int newDenom = rhs.denom * denom;
     return Fraction(newNum, newDenom);
 }
@@ -40,7 +40,7 @@ Fraction Fraction::operator - (const Fraction& rhs) const {
 // non-member functions:
 // Implementing the += operation in a non-member function
 Fraction& operator += (Fraction& lhs, const Fraction& rhs) {
-    lhs.num = lhs.num * rhs.denom + lhs.denom * rhs.num;    
+    lhs.num = lhs.num * rhs.denom + lhs.denom * rhs.num;
     lhs.denom *= rhs.denom;
     lhs.reduce();
     return lhs;
